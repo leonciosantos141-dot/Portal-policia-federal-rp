@@ -1,43 +1,61 @@
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polícia Federal RP - Portal Oficial</title>
-    <link href="https://jsdelivr.net" rel="stylesheet">
+    <!-- Link oficial do Bootstrap 5 corrigido -->
+    <link href="https://jsdelivr.net" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        body { background-color: #0b132b; color: #ffffff; font-family: 'Segoe UI', sans-serif; }
-        .navbar-pf { background-color: #1c2541; border-bottom: 3px solid #d4af37; }
-        .card-pf { background-color: #1c2541; border: 1px solid #3a506b; }
+        body {
+            background-color: #0b132b;
+            color: #ffffff;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .navbar-pf {
+            background-color: #1c2541;
+            border-bottom: 4px solid #d4af37; /* Linha dourada tática */
+        }
+        .card-pf {
+            background-color: #1c2541;
+            border: 1px solid #3a506b;
+            border-radius: 8px;
+        }
+        .form-control::placeholder {
+            color: #a0aec0;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-pf">
+    <!-- Barra Superior -->
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-pf shadow">
         <div class="container">
-            <a class="navbar-brand fw-bold text-uppercase" href="#">Federal RP</a>
+            <a class="navbar-brand fw-bold text-uppercase tracking-wider" href="#">Federal RP</a>
         </div>
     </nav>
+
+    <!-- Conteúdo Principal -->
     <div class="container my-5">
         <div class="text-center mb-5">
-            <h1 class="display-4 fw-bold">DEPARTAMENTO DE POLÍCIA FEDERAL</h1>
-            <p class="lead text-muted">Sistema de Intranet — Cidade FiveM</p>
+            <h1 class="display-5 fw-bold text-uppercase">Departamento de Polícia Federal</h1>
+            <p class="lead text-secondary">Sistema de Intranet — Cidade FiveM</p>
         </div>
+
         <div class="row g-4 justify-content-center">
-            <div class="col-md-6">
-                <div class="card card-pf text-white p-4 shadow">
-                    <h3 class="card-title mb-4 text-center">Acesso ao Sistema</h3>
+            <div class="col-12 col-md-6 col-lg-5">
+                <div class="card card-pf text-white p-4 shadow-lg">
+                    <h3 class="card-title mb-4 text-center fw-semibold text-warning">Acesso ao Sistema</h3>
                     <form>
                         <div class="mb-3">
-                            <label class="form-label">Número do Passaporte</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary" placeholder="Ex: 1042">
+                            <label class="form-label fw-medium">Número do Passaporte</label>
+                            <input type="number" class="form-control bg-dark text-white border-secondary p-2" placeholder="Ex: 1042">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">Senha de Agente</label>
-                            <input type="password" class="form-control bg-dark text-white border-secondary" placeholder="******">
+                        <div class="mb-4">
+                            <label class="form-label fw-medium">Senha de Agente</label>
+                            <input type="password" class="form-control bg-dark text-white border-secondary p-2" placeholder="******">
                         </div>
-                        <button type="button" class="btn btn-warning w-100 fw-bold">Entrar no Terminal</button>
+                        <button type="button" class="btn btn-warning w-100 fw-bold py-2 shadow-sm text-dark">ENTRAR NO TERMINAL</button>
                     </form>
                 </div>
             </div>
