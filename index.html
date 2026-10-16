@@ -1,66 +1,131 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Polícia Federal RP - Portal Oficial</title>
-    <!-- Link oficial do Bootstrap 5 corrigido -->
-    <link href="https://jsdelivr.net" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- CSS Bootstrap via CDN oficial e completo para alinhar o design -->
+    <link rel="stylesheet" href="https://cloudflare.com">
     <style>
         body {
-            background-color: #0b132b;
+            background-color: #0a1128;
             color: #ffffff;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
         .navbar-pf {
-            background-color: #1c2541;
-            border-bottom: 4px solid #d4af37; /* Linha dourada tática */
+            background-color: #001f3f;
+            border-bottom: 4px solid #d4af37;
         }
         .card-pf {
-            background-color: #1c2541;
-            border: 1px solid #3a506b;
-            border-radius: 8px;
-        }
-        .form-control::placeholder {
-            color: #a0aec0;
+            background-color: #111d4a;
+            border: 1px solid #1f3a60;
+            border-radius: 12px;
         }
     </style>
 </head>
 <body>
-    <!-- Barra Superior -->
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-pf shadow">
+
+    <!-- Interface do Login -->
+    <div id="tela-login">
+        <nav class="navbar navbar-dark navbar-pf shadow mb-5">
+            <div class="container justify-content-center">
+                <span class="navbar-brand fw-bold tracking-wider text-uppercase">FEDERAL RP — INTRANET</span>
+            </div>
+        </nav>
+
         <div class="container">
-            <a class="navbar-brand fw-bold text-uppercase tracking-wider" href="#">Federal RP</a>
-        </div>
-    </nav>
+            <div class="text-center mb-5">
+                <h1 class="fw-bold text-uppercase">Departamento de Polícia Federal</h1>
+                <p class="lead text-secondary">Sistema Autenticado — Cidade FiveM</p>
+            </div>
 
-    <!-- Conteúdo Principal -->
-    <div class="container my-5">
-        <div class="text-center mb-5">
-            <h1 class="display-5 fw-bold text-uppercase">Departamento de Polícia Federal</h1>
-            <p class="lead text-secondary">Sistema de Intranet — Cidade FiveM</p>
-        </div>
-
-        <div class="row g-4 justify-content-center">
-            <div class="col-12 col-md-6 col-lg-5">
-                <div class="card card-pf text-white p-4 shadow-lg">
-                    <h3 class="card-title mb-4 text-center fw-semibold text-warning">Acesso ao Sistema</h3>
-                    <form>
-                        <div class="mb-3">
-                            <label class="form-label fw-medium">Número do Passaporte</label>
-                            <input type="number" class="form-control bg-dark text-white border-secondary p-2" placeholder="Ex: 1042">
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label fw-medium">Senha de Agente</label>
-                            <input type="password" class="form-control bg-dark text-white border-secondary p-2" placeholder="******">
-                        </div>
-                        <button type="button" class="btn btn-warning w-100 fw-bold py-2 shadow-sm text-dark">ENTRAR NO TERMINAL</button>
-                    </form>
+            <div class="row justify-content-center px-3">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="card card-pf p-4 shadow-lg">
+                        <h3 class="card-title mb-4 text-center fw-bold text-warning">Acesso ao Terminal</h3>
+                        <form id="form-login">
+                            <div class="mb-3">
+                                <label class="form-label fw-medium">Número do Passaporte</label>
+                                <input type="number" id="passaporte" class="form-control bg-dark text-white border-secondary" placeholder="Ex: 1441" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-medium">Senha de Agente</label>
+                                <input type="password" id="senha" class="form-control bg-dark text-white border-secondary" placeholder="******" required>
+                            </div>
+                            <button type="submit" class="btn btn-warning w-100 fw-bold py-2 text-dark">ENTRAR NO TERMINAL</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Interface Interna (Aparece após o clique no botão) -->
+    <div id="painel-interno" class="d-none">
+        <nav class="navbar navbar-dark navbar-pf shadow mb-4">
+            <div class="container justify-content-between">
+                <span class="navbar-brand fw-bold text-warning">PF TERMINAL OPERACIONAL</span>
+                <button onclick="fazerLogout()" class="btn btn-outline-danger btn-sm">Sair do Sistema</button>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="alert alert-success text-center shadow-sm">
+                <strong>Acesso Autorizado!</strong> Bem-vindo ao terminal da Polícia Federal, Agente <span id="user-display" class="fw-bold text-dark"></span>.
+            </div>
+
+            <div class="row g-4 mt-2">
+                <!-- Módulo 1 -->
+                <div class="col-6 col-md-4">
+                    <div class="card card-pf p-3 text-center border-warning">
+                        <h5 class="fw-bold">Ficha Criminal</h5>
+                        <p class="small text-muted">Consultar e aplicar crimes</p>
+                        <button class="btn btn-sm btn-primary w-100">Consultar</button>
+                    </div>
+                </div>
+                <!-- Módulo 2 -->
+                <div class="col-6 col-md-4">
+                    <div class="card card-pf p-3 text-center border-warning">
+                        <h5 class="fw-bold">Mandados</h5>
+                        <p class="small text-muted">Mandados de prisão ativos</p>
+                        <button class="btn btn-sm btn-primary w-100">Ver Lista</button>
+                    </div>
+                </div>
+                <!-- Módulo 3 -->
+                <div class="col-6 col-md-4">
+                    <div class="card card-pf p-3 text-center border-warning">
+                        <h5 class="fw-bold">Código Penal</h5>
+                        <p class="small text-muted">Consulta rápida de penas</p>
+                        <button class="btn btn-sm btn-primary w-100">Abrir Artigos</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lógica de Funcionamento do Botão (JavaScript) -->
+    <script>
+        document.getElementById('form-login').addEventListener('submit', function(e) {
+            e.preventDefault(); // Impede a página de recarregar
+
+            const passaporte = document.getElementById('passaporte').value;
+
+            // Esconde a tela de login e mostra o painel interno
+            document.getElementById('tela-login').classList.add('d-none');
+            document.getElementById('painel-interno').classList.remove('d-none');
+
+            // Define o número do passaporte na mensagem de boas-vindas
+            document.getElementById('user-display').innerText = passaporte;
+        });
+
+        function fazerLogout() {
+            // Volta para a tela de login
+            document.getElementById('painel-interno').classList.add('d-none');
+            document.getElementById('tela-login').classList.remove('d-none');
+            document.getElementById('form-login').reset();
+        }
+    </script>
 </body>
 </html>
+
 
